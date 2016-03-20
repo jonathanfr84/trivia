@@ -366,7 +366,14 @@ public class GameTests {
 		assertEquals(2, game.howManyPlayers());
 	}
 	
-	//Se trata de una limitación del código. Denería aceptar más de 7
+	@Test
+	public void one_player_can_be_removed() {
+		game.add("Jonathan");
+		game.removePlayer("Jonathan");
+		assertEquals(0, game.howManyPlayers());
+	}
+	
+	//Se trata de una limitación del código. Debería aceptar más de 7
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void when_seven_players_are_added_get_an_excepction() {
 		game.add("Jonathan");
@@ -428,7 +435,11 @@ public class GameTests {
         assertEquals(GAME_EXPECTED_WITH_THREE, launchAGame(3));
     }
 
-
+//    @Test
+//    public void one_game_rolling_seven(){
+//        assertEquals("hola", launchAGame(5));
+//    }
+    
     public String launchAGame(int roll){
         Random random = new Random(1);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

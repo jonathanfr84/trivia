@@ -2,9 +2,11 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Game {
     ArrayList players = new ArrayList();
+    double[][] plays;
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
@@ -47,10 +49,14 @@ public class Game {
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
-	    
 	    System.out.println(playerName + " was added");
 	    System.out.println("They are player number " + players.size());
 		return true;
+	}
+	
+	public boolean removePlayer(String playerName) {
+	 	  players.remove(playerName);
+	 	  return true;
 	}
 	
 	public int howManyPlayers() {
@@ -60,6 +66,8 @@ public class Game {
 	public void roll(int roll) {
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
+		
+		
 		
 		if (inPenaltyBox[currentPlayer]) {
 			if (roll % 2 != 0) {
