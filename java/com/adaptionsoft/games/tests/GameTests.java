@@ -390,13 +390,6 @@ public class GameTests {
 		System.setOut(System.out);
 	}
 	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void when_player_is_removed_get_an_exception() {
-		game.add("Jonathan");
-		game.remove("Jonathan");
-		assertEquals(0, game.howManyPlayers());
-	}
-	
 	@Test
 	public void one_roll_with_result_one() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();

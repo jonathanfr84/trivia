@@ -53,11 +53,6 @@ public class Game {
 		return true;
 	}
 	
-	public boolean remove(String playerName) {
-	  players.remove(howManyPlayers());
-	  return true;
-	}
-	
 	public int howManyPlayers() {
 		return players.size();
 	}
