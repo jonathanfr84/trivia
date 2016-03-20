@@ -72,38 +72,38 @@ public class Game {
 			return checkIfPlayerGotThirdSix(roll);
 		} else {
 			if (inPenaltyBox[currentPlayer]) {
-				if (roll % 2 != 0) {
-					isGettingOutOfPenaltyBox = true;
-					
-					System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
-					places[currentPlayer] = places[currentPlayer] + roll;
-					if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-					
-					System.out.println(players.get(currentPlayer) 
-							+ "'s new location is " 
-							+ places[currentPlayer]);
-					System.out.println("The category is " + currentCategory());
-					askQuestion();
-				} else {
-					System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
-					isGettingOutOfPenaltyBox = false;
-					}
+				playerIsInPenaltyBox(roll);
 				
 			} else {
-			
-				places[currentPlayer] = places[currentPlayer] + roll;
-				if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-				
-				System.out.println(players.get(currentPlayer) 
-						+ "'s new location is " 
-						+ places[currentPlayer]);
-				System.out.println("The category is " + currentCategory());
-				askQuestion();
+				playerIsNotInPenaltyBox(roll);
 			}
 		}
 		
 		return true;
 		
+	}
+
+	private void playerIsNotInPenaltyBox(int roll) {
+		places[currentPlayer] = places[currentPlayer] + roll;
+		if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+		
+		System.out.println(players.get(currentPlayer) 
+				+ "'s new location is " 
+				+ places[currentPlayer]);
+		System.out.println("The category is " + currentCategory());
+		askQuestion();
+	}
+
+	private void playerIsInPenaltyBox(int roll) {
+		if (roll % 2 != 0) {
+			isGettingOutOfPenaltyBox = true;
+			
+			System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
+			playerIsNotInPenaltyBox(roll);
+		} else {
+			System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
+			isGettingOutOfPenaltyBox = false;
+			}
 	}
 
 	private boolean checkIfPlayerGotThirdSix(int roll) {
@@ -183,18 +183,23 @@ public class Game {
 		}
 	}
 
-	private void textIfAnswerIsCorrect() {
-		System.out.println("Answer was correct!!!!");
-	}
 	
 	public boolean wrongAnswer(){
-		System.out.println("Question was incorrectly answered");
+		textIfAnswerIsNotCorrect();
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 		
 		currentPlayer++;
 		if (currentPlayer == players.size()) currentPlayer = 0;
 		return true;
+	}
+
+	private void textIfAnswerIsCorrect() {
+		System.out.println("Answer was correct!!!!");
+	}
+	
+	private void textIfAnswerIsNotCorrect() {
+		System.out.println("Question was incorrectly answered");
 	}
 
 	/**
