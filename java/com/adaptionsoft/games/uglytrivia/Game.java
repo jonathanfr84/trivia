@@ -71,9 +71,9 @@ public class Game {
 		if (roll == 6) {
 			timesSixWasGot++;
 			if (timesSixWasGot == 3) {
-			System.out.println(players.get(currentPlayer) + " got the third " + roll + " so he/she is going to be eliminated");
-			removePlayer(players.get(currentPlayer));
-			return false;
+				System.out.println(players.get(currentPlayer) + " got the third " + roll + " so he/she is going to be eliminated");
+				removePlayer(players.get(currentPlayer));
+				return false;
 			}
 		} else {
 			if (inPenaltyBox[currentPlayer]) {
@@ -140,7 +140,7 @@ public class Game {
 	public boolean wasCorrectlyAnswered() {
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
-				System.out.println("Answer was correct!!!!");
+				textIfAnswerIsCorrect();
 				purses[currentPlayer]++;
 				System.out.println(players.get(currentPlayer) 
 						+ " now has "
@@ -162,7 +162,7 @@ public class Game {
 			
 		} else {
 		
-			System.out.println("Answer was corrent!!!!");
+			textIfAnswerIsCorrect();
 			purses[currentPlayer]++;
 			System.out.println(players.get(currentPlayer) 
 					+ " now has "
@@ -175,6 +175,10 @@ public class Game {
 			
 			return winner;
 		}
+	}
+
+	private void textIfAnswerIsCorrect() {
+		System.out.println("Answer was correct!!!!");
 	}
 	
 	public boolean wrongAnswer(){
