@@ -69,12 +69,7 @@ public class Game {
 		System.out.println("They have rolled a " + roll);
 		
 		if (roll == 6) {
-			timesSixWasGot++;
-			if (timesSixWasGot == 3) {
-				System.out.println(players.get(currentPlayer) + " got the third " + roll + " so he/she is going to be eliminated");
-				removePlayer(players.get(currentPlayer));
-				return false;
-			}
+			return checkIfPlayerGotThirdSix(roll);
 		} else {
 			if (inPenaltyBox[currentPlayer]) {
 				if (roll % 2 != 0) {
@@ -109,6 +104,17 @@ public class Game {
 		
 		return true;
 		
+	}
+
+	private boolean checkIfPlayerGotThirdSix(int roll) {
+		timesSixWasGot++;
+		if (timesSixWasGot == 3) {
+			System.out.println(players.get(currentPlayer) + " got the third " + roll + " so he/she is going to be eliminated");
+			removePlayer(players.get(currentPlayer));
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	private void askQuestion() {
