@@ -65,7 +65,7 @@ public class Game {
 	}
 
 	public boolean roll(int roll) {
-		System.out.println(players.get(currentPlayer) + " is the current player");
+		System.out.println(currentPlayer() + " is the current player");
 		System.out.println("They have rolled a " + roll);
 		
 		if (roll == 6) {
@@ -87,7 +87,7 @@ public class Game {
 		places[currentPlayer] = places[currentPlayer] + roll;
 		if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 		
-		System.out.println(players.get(currentPlayer) 
+		System.out.println(currentPlayer() 
 				+ "'s new location is " 
 				+ places[currentPlayer]);
 		System.out.println("The category is " + currentCategory());
@@ -98,19 +98,23 @@ public class Game {
 		if (roll % 2 != 0) {
 			isGettingOutOfPenaltyBox = true;
 			
-			System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
+			System.out.println(currentPlayer() + " is getting out of the penalty box");
 			playerIsNotInPenaltyBox(roll);
 		} else {
-			System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
+			System.out.println(currentPlayer() + " is not getting out of the penalty box");
 			isGettingOutOfPenaltyBox = false;
 			}
+	}
+
+	private Object currentPlayer() {
+		return players.get(currentPlayer);
 	}
 
 	private boolean checkIfPlayerGotThirdSix(int roll) {
 		timesSixWasGot++;
 		if (timesSixWasGot == 3) {
-			System.out.println(players.get(currentPlayer) + " got the third " + roll + " so he/she is going to be eliminated");
-			removePlayer(players.get(currentPlayer));
+			System.out.println(currentPlayer() + " got the third " + roll + " so he/she is going to be eliminated");
+			removePlayer(currentPlayer());
 			return false;
 		} else {
 			return true;
@@ -165,7 +169,7 @@ public class Game {
 	private boolean increasePlayerScore() {
 		textIfAnswerIsCorrect();
 		purses[currentPlayer]++;
-		System.out.println(players.get(currentPlayer) 
+		System.out.println(currentPlayer() 
 				+ " now has "
 				+ purses[currentPlayer]
 				+ " Gold Coins.");
@@ -180,7 +184,7 @@ public class Game {
 	
 	public boolean wrongAnswer(){
 		textIfAnswerIsNotCorrect();
-		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
+		System.out.println(currentPlayer()+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 		
 		currentPlayer++;
