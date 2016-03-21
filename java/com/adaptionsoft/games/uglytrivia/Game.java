@@ -2,21 +2,19 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Game {
-    ArrayList players = new ArrayList();
-    double[][] plays;
+    ArrayList<String> players = new ArrayList<String>();
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
     int timesSixWasGot = 0;
     int[] highscores= new int[6];
 
-    LinkedList popQuestions = new LinkedList();
-    LinkedList scienceQuestions = new LinkedList();
-    LinkedList sportsQuestions = new LinkedList();
-    LinkedList rockQuestions = new LinkedList();
+    LinkedList<String> popQuestions = new LinkedList<String>();
+    LinkedList<String> scienceQuestions = new LinkedList<String>();
+    LinkedList<String> sportsQuestions = new LinkedList<String>();
+    LinkedList<String> rockQuestions = new LinkedList<String>();
     
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
