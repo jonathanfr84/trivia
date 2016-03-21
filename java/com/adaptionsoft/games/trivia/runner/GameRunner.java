@@ -1,5 +1,7 @@
 
 package com.adaptionsoft.games.trivia.runner;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.adaptionsoft.games.uglytrivia.Game;
@@ -10,17 +12,21 @@ public class GameRunner {
 	private static boolean notAWinner;
 
 	public static void main(String[] args) {
-		launchAGame();
+		List<String> players = new ArrayList<String>();
+		players.add("Chet");
+		players.add("Pat");
+		players.add("Sue");
+		launchAGame(players);
 		
 	}
 
-	public static void launchAGame() {
+	public static void launchAGame(List<String> players) {
 		Game aGame = new Game();
 		boolean playerContinues;
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
-		
+
+		for (String player : players) {
+			aGame.add(player);
+		}
 		Random rand = new Random();
 	
 		do {
