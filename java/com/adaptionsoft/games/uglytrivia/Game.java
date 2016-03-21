@@ -131,15 +131,19 @@ public class Game {
 
 	// randomly return a category
 	private String currentCategory() {
-		if (places[currentPlayer] == 0) return "Pop";
-		if (places[currentPlayer] == 4) return "Pop";
-		if (places[currentPlayer] == 8) return "Pop";
-		if (places[currentPlayer] == 1) return "Science";
-		if (places[currentPlayer] == 5) return "Science";
-		if (places[currentPlayer] == 9) return "Science";
-		if (places[currentPlayer] == 2) return "Sports";
-		if (places[currentPlayer] == 6) return "Sports";
-		if (places[currentPlayer] == 10) return "Sports";
+		
+		int categoryType = places[currentPlayer] % 4;
+		
+		switch (categoryType) {
+		case 0:
+			return "Pop";
+		case 1:
+			return "Science";
+		case 2:
+			return "Sports";
+		default:
+			break;
+		}
 		return "Rock";
 	}
 
@@ -154,7 +158,6 @@ public class Game {
 			}
 
 		} else {
-		
 			return increasePlayerScore();
 		}
 	}
